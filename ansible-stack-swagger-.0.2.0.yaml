@@ -947,7 +947,6 @@ definitions:
         items:
           $ref: '#/definitions/Engagement'
     required:
-    - id
     - name
   Engagement:
     type: object
@@ -976,7 +975,6 @@ definitions:
         items:
           $ref: '#/definitions/User'
     required:
-    - id
     - name
   OpenshiftCluster:
     type: object
@@ -992,8 +990,6 @@ definitions:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
         type: string
-    required:
-    - id
   OpenshiftResources:
     type: object
     properties:
