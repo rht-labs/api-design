@@ -6,7 +6,53 @@ info:
 
 paths:
   /customers:
+    post:
+      tags:
+        - customer
+      summary: Add a new customer
+      description: ""
+      operationId: addCustomer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Customer object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - customer
+      summary: Update an existing customer
+      description: ""
+      operationId: updateCustomer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Customer object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Customer not found
+        "400":
+          description: Invalid ID supplied
     get:
+      tags:
+      - customer
       description: |
         Gets `Customer` objects.
         Optional query param of **size** determines
@@ -34,9 +80,14 @@ paths:
             type: array
             items:
               $ref: "#/definitions/Customer"
-              
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
   /customers/{id}:
     get:
+      tags:
+      - customer
       description: |
         Gets an `Customer` object by ID.
       parameters:
@@ -52,6 +103,836 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Customer"
+    delete:
+      tags:
+        - customer
+      summary: Deletes a customer
+      description: ""
+      operationId: deleteCustomer
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Customer id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid customer value
+  /engagements:
+    post:
+      tags:
+        - engagement
+      summary: Add a new engagement
+      description: ""
+      operationId: addEngagement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Engagement object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/Engagement"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - engagement
+      summary: Update an existing engagement
+      description: ""
+      operationId: updateEngagement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Engagement object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Engagement"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Engagement not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - engagement
+      description: |
+        Gets `Engagement` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Engagements
+            type: array
+            items:
+              $ref: "#/definitions/Engagement"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /engagements/{id}:
+    get:
+      tags:
+      - engagement
+      description: |
+        Gets an `Engagement` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Engagement ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Engagement"
+    delete:
+      tags:
+        - engagement
+      summary: Deletes an engagement
+      description: ""
+      operationId: deleteEngagement
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Engagement id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Engagement value
+  /openshift_clusters:
+    post:
+      tags:
+        - openshift_cluster
+      summary: Add a new openshift_cluster
+      description: ""
+      operationId: addOpenshiftCluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: OpenshiftCluster object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/OpenshiftCluster"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - openshift_cluster
+      summary: Update an existing openshift_cluster
+      description: ""
+      operationId: updateOpenshiftCluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: OpenshiftCluster object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/OpenshiftCluster"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: OpenshiftCluster not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - openshift_cluster
+      description: |
+        Gets `OpenshiftCluster` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: OpenshiftClusters
+            type: array
+            items:
+              $ref: "#/definitions/OpenshiftCluster"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /openshift_clusters/{id}:
+    get:
+      tags:
+      - openshift_cluster
+      description: |
+        Gets an `OpenshiftCluster` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: OpenshiftCluster ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/OpenshiftCluster"
+    delete:
+      tags:
+        - openshift_cluster
+      summary: Deletes an openshift_cluster
+      description: ""
+      operationId: deleteOpenshiftCluster
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: OpenshiftCluster id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid OpenshiftCluster value
+  /users:
+    post:
+      tags:
+        - user
+      summary: Add a new user
+      description: ""
+      operationId: addUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - user
+      summary: Update an existing user
+      description: ""
+      operationId: updateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: User not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - user
+      description: |
+        Gets `User` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Users
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /users/{id}:
+    get:
+      tags:
+      - user
+      description: |
+        Gets an `User` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: User ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/User"
+    delete:
+      tags:
+        - user
+      summary: Deletes an user
+      description: ""
+      operationId: deleteUser
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: User id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid User value
+  /projects:
+    post:
+      tags:
+        - project
+      summary: Add a new project
+      description: ""
+      operationId: addProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Project object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/Project"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - project
+      summary: Update an existing project
+      description: ""
+      operationId: updateProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Project object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Project"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Project not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - project
+      description: |
+        Gets `Project` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Projects
+            type: array
+            items:
+              $ref: "#/definitions/Project"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /projects/{id}:
+    get:
+      tags:
+      - project
+      description: |
+        Gets an `Project` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Project ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Project"
+    delete:
+      tags:
+        - project
+      summary: Deletes an project
+      description: ""
+      operationId: deleteProject
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Project id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Project value
+  /applications:
+    post:
+      tags:
+        - application
+      summary: Add a new application
+      description: ""
+      operationId: addApplication
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Application object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/Application"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - application
+      summary: Update an existing application
+      description: ""
+      operationId: updateApplication
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Application object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Application"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Application not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - application
+      description: |
+        Gets `Application` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Applications
+            type: array
+            items:
+              $ref: "#/definitions/Application"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /applications/{id}:
+    get:
+      tags:
+      - application
+      description: |
+        Gets an `Application` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Application ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Application"
+    delete:
+      tags:
+        - application
+      summary: Deletes an application
+      description: ""
+      operationId: deleteApplication
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Application id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Application value
+  /role_mappings:
+    post:
+      tags:
+        - role_mapping
+      summary: Add a new role_mapping
+      description: ""
+      operationId: addRoleMapping
+      consumes:
+        - role_mapping/json
+      produces:
+        - role_mapping/json
+      parameters:
+        - in: body
+          name: body
+          description: RoleMapping object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/RoleMapping"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - role_mapping
+      summary: Update an existing role_mapping
+      description: ""
+      operationId: updateRoleMapping
+      consumes:
+        - role_mapping/json
+      produces:
+        - role_mapping/json
+      parameters:
+        - in: body
+          name: body
+          description: RoleMapping object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/RoleMapping"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: RoleMapping not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - role_mapping
+      description: |
+        Gets `RoleMapping` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: RoleMappings
+            type: array
+            items:
+              $ref: "#/definitions/RoleMapping"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /role_mappings/{id}:
+    get:
+      tags:
+      - role_mapping
+      description: |
+        Gets an `RoleMapping` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: RoleMapping ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/RoleMapping"
+    delete:
+      tags:
+        - role_mapping
+      summary: Deletes an role_mapping
+      description: ""
+      operationId: deleteRoleMapping
+      produces:
+        - role_mapping/json
+      parameters:
+        - in: path
+          name: id
+          description: RoleMapping id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid RoleMapping value
+  /roles:
+    post:
+      tags:
+        - role
+      summary: Add a new role
+      description: ""
+      operationId: addRole
+      consumes:
+        - role/json
+      produces:
+        - role/json
+      parameters:
+        - in: body
+          name: body
+          description: Role object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/Role"
+      responses:
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - role
+      summary: Update an existing role
+      description: ""
+      operationId: updateRole
+      consumes:
+        - role/json
+      produces:
+        - role/json
+      parameters:
+        - in: body
+          name: body
+          description: Role object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Role"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Role not found
+        "400":
+          description: Invalid ID supplied
+    get:
+      tags:
+      - role
+      description: |
+        Gets `Role` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Roles
+            type: array
+            items:
+              $ref: "#/definitions/Role"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /roles/{id}:
+    get:
+      tags:
+      - role
+      description: |
+        Gets an `Role` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Role ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Role"
+    delete:
+      tags:
+        - role
+      summary: Deletes an role
+      description: ""
+      operationId: deleteRole
+      produces:
+        - role/json
+      parameters:
+        - in: path
+          name: id
+          description: Role id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid Role value
 definitions:
   Customer:
     type: object
@@ -65,6 +946,9 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Engagement'
+    required:
+    - id
+    - name
   Engagement:
     type: object
     properties:
@@ -91,6 +975,9 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/User'
+    required:
+    - id
+    - name
   OpenshiftCluster:
     type: object
     properties:
@@ -105,6 +992,8 @@ definitions:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
         type: string
+    required:
+    - id
   OpenshiftResources:
     type: object
     properties:
@@ -143,8 +1032,10 @@ definitions:
       id:
         type: integer
         format: int64
-			host:
+      host:
         type: string
+    required:
+    - host
   User:
     type: object
     properties:
@@ -157,6 +1048,8 @@ definitions:
         type: string
       last_name:
         type: string
+    required:
+    - email
   Openshift:
     type: object
     properties:
@@ -187,6 +1080,8 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/RoleMapping'
+    required:
+    - name
   Application:
     type: object
     properties:
@@ -205,7 +1100,6 @@ definitions:
         type: string
       scm_ref:
         type: string
-      
       name:
         type: string
   RoleMapping:
@@ -220,6 +1114,9 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Role'
+    required:
+    - user
+    - roles
   Role:
     type: object
     properties:
@@ -228,4 +1125,17 @@ definitions:
         format: int64
       name:
         type: string
-
+    required:
+    - name
+  ErrorModel:
+    type: object
+    required:
+    - message
+    - code
+    properties:
+      message:
+        type: string
+      code:
+        type: integer
+        minimum: 100
+        maximum: 600
