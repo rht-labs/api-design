@@ -1,0 +1,231 @@
+swagger: '2.0'
+
+info:
+  version: "0.2.0"
+  title: EMdP modeling and API design
+
+paths:
+  /customers:
+    get:
+      description: |
+        Gets `Customer` objects.
+        Optional query param of **size** determines
+        size of returned array
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Customers
+            type: array
+            items:
+              $ref: "#/definitions/Customer"
+              
+  /customers/{id}:
+    get:
+      description: |
+        Gets an `Customer` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Customer ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Customer"
+definitions:
+  Customer:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      engagements:
+        type: array
+        items:
+          $ref: '#/definitions/Engagement'
+  Engagement:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      start_date:
+        type: string
+        format: date
+      end_date:
+        type: string
+        format: date
+      docker:
+        type: array
+        items:
+          $ref: "#/definitions/Docker"
+      openshift_cluster:
+        type: array
+        items:
+          $ref: "#/definitions/OpenshiftCluster"
+      team:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+  OpenshiftCluster:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      label:
+        type: string
+      openshift:
+        $ref: '#/definitions/Openshift'
+      openshift_resources_to_create:
+        $ref: '#/definitions/OpenshiftResources'
+      openshift_host_env:
+        type: string
+  OpenshiftResources:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      projects:
+        type: array
+        items:
+          $ref: "#/definitions/Project"
+  Docker:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      label:
+        type: string
+      common:
+        $ref: "#/definitions/Common"
+      registry:
+        $ref: "#/definitions/Registry"
+      user:
+        $ref: "#/definitions/User"
+  Common:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      client_binary:
+        type: string
+  Registry:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+			host:
+        type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+  Openshift:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      common:
+        $ref: "#/definitions/Common"
+  Project:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      display_name:
+        type: string
+      name: 
+        type: string
+      build_environment:
+        type: boolean
+      promotion_environment:
+        type: boolean
+      apps:
+        type: array
+        items:
+          $ref: "#/definitions/Application"
+      user_to_role:
+        type: array
+        items:
+          $ref: '#/definitions/RoleMapping'
+  Application:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      base_image:
+        type: string
+      base_image_tag:
+        type: string
+      context_dir:
+        type: string
+      scm_url:
+        type: string
+      scm_type:
+        type: string
+      scm_ref:
+        type: string
+      
+      name:
+        type: string
+  RoleMapping:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      user:
+        $ref: '#/definitions/User'
+      roles:
+        type: array
+        items:
+          $ref: '#/definitions/Role'
+  Role:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+
