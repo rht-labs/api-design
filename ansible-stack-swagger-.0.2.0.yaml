@@ -26,30 +26,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - customer
-      summary: Update an existing customer
-      description: ""
-      operationId: updateCustomer
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Customer object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/Customer"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: Customer not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - customer
@@ -103,6 +79,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Customer"
+    put:
+      tags:
+        - customer
+      summary: Update an existing customer
+      description: ""
+      operationId: updateCustomer
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Customer ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Customer object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Customer not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - customer
@@ -142,30 +149,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - engagement
-      summary: Update an existing engagement
-      description: ""
-      operationId: updateEngagement
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Engagement object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/Engagement"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: Engagement not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - engagement
@@ -219,6 +202,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Engagement"
+    put:
+      tags:
+        - engagement
+      summary: Update an existing engagement
+      description: ""
+      operationId: updateEngagement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Engagement ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Engagement object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Engagement"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Engagement not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - engagement
@@ -258,30 +272,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - openshift_cluster
-      summary: Update an existing openshift_cluster
-      description: ""
-      operationId: updateOpenshiftCluster
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: OpenshiftCluster object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/OpenshiftCluster"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: OpenshiftCluster not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - openshift_cluster
@@ -335,6 +325,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/OpenshiftCluster"
+    put:
+      tags:
+        - openshift_cluster
+      summary: Update an existing openshift_cluster
+      description: ""
+      operationId: updateOpenshiftCluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: OpenshiftCluster ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: OpenshiftCluster object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/OpenshiftCluster"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: OpenshiftCluster not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - openshift_cluster
@@ -374,30 +395,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - user
-      summary: Update an existing user
-      description: ""
-      operationId: updateUser
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: User object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/User"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: User not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - user
@@ -451,6 +448,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/User"
+    put:
+      tags:
+        - user
+      summary: Update an existing user
+      description: ""
+      operationId: updateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: User ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: User object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: User not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - user
@@ -490,30 +518,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - project
-      summary: Update an existing project
-      description: ""
-      operationId: updateProject
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Project object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/Project"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: Project not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - project
@@ -567,6 +571,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Project"
+    put:
+      tags:
+        - project
+      summary: Update an existing project
+      description: ""
+      operationId: updateProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Project ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Project object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Project"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Project not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - project
@@ -583,7 +618,7 @@ paths:
           type: integer
           format: int64
       responses:
-        "400":
+				"400":
           description: Invalid Project value
   /applications:
     post:
@@ -606,30 +641,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - application
-      summary: Update an existing application
-      description: ""
-      operationId: updateApplication
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Application object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/Application"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: Application not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - application
@@ -683,6 +694,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Application"
+    put:
+      tags:
+        - application
+      summary: Update an existing application
+      description: ""
+      operationId: updateApplication
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Application ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Application object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Application"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Application not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - application
@@ -722,30 +764,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - role_mapping
-      summary: Update an existing role_mapping
-      description: ""
-      operationId: updateRoleMapping
-      consumes:
-        - role_mapping/json
-      produces:
-        - role_mapping/json
-      parameters:
-        - in: body
-          name: body
-          description: RoleMapping object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/RoleMapping"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: RoleMapping not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - role_mapping
@@ -799,6 +817,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/RoleMapping"
+    put:
+      tags:
+        - role_mapping
+      summary: Update an existing role_mapping
+      description: ""
+      operationId: updateRoleMapping
+      consumes:
+        - role_mapping/json
+      produces:
+        - role_mapping/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: RoleMapping ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: RoleMapping object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/RoleMapping"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: RoleMapping not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - role_mapping
@@ -838,30 +887,6 @@ paths:
       responses:
         "405":
           description: Invalid input
-    put:
-      tags:
-        - role
-      summary: Update an existing role
-      description: ""
-      operationId: updateRole
-      consumes:
-        - role/json
-      produces:
-        - role/json
-      parameters:
-        - in: body
-          name: body
-          description: Role object that needs to be updated in the store
-          required: false
-          schema:
-            $ref: "#/definitions/Role"
-      responses:
-        "405":
-          description: Validation exception
-        "404":
-          description: Role not found
-        "400":
-          description: Invalid ID supplied
     get:
       tags:
       - role
@@ -915,6 +940,37 @@ paths:
           description: Successful response
           schema:
             $ref: "#/definitions/Role"
+    put:
+      tags:
+        - role
+      summary: Update an existing role
+      description: ""
+      operationId: updateRole
+      consumes:
+        - role/json
+      produces:
+        - role/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Role ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Role object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/Role"
+      responses:
+        "405":
+          description: Validation exception
+        "404":
+          description: Role not found
+        "400":
+          description: Invalid ID supplied
     delete:
       tags:
         - role
@@ -947,6 +1003,7 @@ definitions:
         items:
           $ref: '#/definitions/Engagement'
     required:
+    - id
     - name
   Engagement:
     type: object
@@ -975,6 +1032,7 @@ definitions:
         items:
           $ref: '#/definitions/User'
     required:
+    - id
     - name
   OpenshiftCluster:
     type: object
@@ -990,6 +1048,8 @@ definitions:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
         type: string
+    required:
+    - id
   OpenshiftResources:
     type: object
     properties:
@@ -1062,7 +1122,7 @@ definitions:
         format: int64
       display_name:
         type: string
-      name: 
+      name:
         type: string
       build_environment:
         type: boolean
@@ -1135,3 +1195,4 @@ definitions:
         type: integer
         minimum: 100
         maximum: 600
+
