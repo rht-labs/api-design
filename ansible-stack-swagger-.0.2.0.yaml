@@ -618,7 +618,7 @@ paths:
           type: integer
           format: int64
       responses:
-				"400":
+        "400":
           description: Invalid Project value
   /applications:
     post:
