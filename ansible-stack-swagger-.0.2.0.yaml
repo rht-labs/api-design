@@ -1158,6 +1158,15 @@ definitions:
         type: string
       name:
         type: string
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      environment_variables:
+        type: object
+        additionalProperties:
+          type: string
+
   RoleMapping:
     type: object
     properties:
@@ -1195,4 +1204,3 @@ definitions:
         type: integer
         minimum: 100
         maximum: 600
-
