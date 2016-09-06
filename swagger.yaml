@@ -1,8 +1,8 @@
 swagger: '2.0'
 
 info:
-  version: "0.2.0"
-  title: EMdP modeling and API design
+  version: "0.1.0"
+  title: Red Hat Open Innovation Labs API
 
 paths:
   /customers:
@@ -1019,10 +1019,6 @@ definitions:
       end_date:
         type: string
         format: date
-      docker:
-        type: array
-        items:
-          $ref: "#/definitions/Docker"
       openshift_cluster:
         type: array
         items:
@@ -1040,14 +1036,18 @@ definitions:
       id:
         type: integer
         format: int64
-      label:
-        type: string
+      labels:
+        type: object
+        additionalProperties:
+          type: string
       openshift:
         $ref: '#/definitions/Openshift'
       openshift_resources_to_create:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
         type: string
+      image_registry:
+        $ref: "#/definitions/ImageRegistry"
     required:
     - id
   OpenshiftResources:
@@ -1060,29 +1060,7 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/Project"
-  Docker:
-    type: object
-    properties:
-      id:
-        type: integer
-        format: int64
-      label:
-        type: string
-      common:
-        $ref: "#/definitions/Common"
-      registry:
-        $ref: "#/definitions/Registry"
-      user:
-        $ref: "#/definitions/User"
-  Common:
-    type: object
-    properties:
-      id:
-        type: integer
-        format: int64
-      client_binary:
-        type: string
-  Registry:
+  ImageRegistry:
     type: object
     properties:
       id:
@@ -1106,14 +1084,6 @@ definitions:
         type: string
     required:
     - email
-  Openshift:
-    type: object
-    properties:
-      id:
-        type: integer
-        format: int64
-      common:
-        $ref: "#/definitions/Common"
   Project:
     type: object
     properties:
