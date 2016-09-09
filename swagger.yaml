@@ -1040,8 +1040,6 @@ definitions:
         type: object
         additionalProperties:
           type: string
-      openshift:
-        $ref: '#/definitions/Openshift'
       openshift_resources_to_create:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
