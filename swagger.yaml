@@ -1083,10 +1083,9 @@ definitions:
         type: string
       user_name:
         type: string
-        required: true
-
     required:
     - email
+    - user_name
   Project:
     type: object
     properties:
