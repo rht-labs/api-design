@@ -1,6 +1,9 @@
 # About
 We're using [Semantic Versioning](http://semver.org/) and following [this definition](http://keepachangelog.com/en/0.3.0/) of a change log
 
+# unreleased
+- Small naming changes defined in #17
+
 # [v0.1.0] - 2016-09-06
 
 ## Additions
