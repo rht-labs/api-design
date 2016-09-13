@@ -1019,7 +1019,7 @@ definitions:
       end_date:
         type: string
         format: date
-      openshift_cluster:
+      openshift_clusters:
         type: array
         items:
           $ref: "#/definitions/OpenshiftCluster"
@@ -1040,7 +1040,7 @@ definitions:
         type: object
         additionalProperties:
           type: string
-      openshift_resources_to_create:
+      openshift_resources:
         $ref: '#/definitions/OpenshiftResources'
       openshift_host_env:
         type: string
@@ -1076,12 +1076,16 @@ definitions:
         format: int64
       email:
         type: string
+        format: email
       first_name:
         type: string
       last_name:
         type: string
+      user_name:
+        type: string
     required:
     - email
+    - user_name
   Project:
     type: object
     properties:
