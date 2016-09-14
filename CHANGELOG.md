@@ -3,6 +3,8 @@ We're using [Semantic Versioning](http://semver.org/) and following [this defini
 
 # unreleased
 - Small naming changes defined in #17
+- Support for code-gen of java client and spring server
+
 
 # [v0.1.0] - 2016-09-06
 
