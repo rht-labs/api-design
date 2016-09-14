@@ -1,0 +1,10 @@
+{
+    "apiPackage" : "com.rhc.automation.api",
+    "artifactId" : "automation-api",
+    "artifactVersion" : "0.1.0",
+    "invokerPackage" : "com.rhc.automation",
+    "basePackage" :  "com.rhc.automation",
+    "configPackage" : "com.rhc.automation.config",
+    "groupId" : "com.rhc",
+    "modelPackage" : "com.rhc.automation.model"
+}
