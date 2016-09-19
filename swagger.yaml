@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "0.1.0"
+  version: "0.2.0"
   title: Red Hat Open Innovation Labs API
   description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
   contact:
@@ -997,6 +997,67 @@ paths:
       responses:
         "400":
           description: Invalid Role value
+          
+  /build_tools:
+    get:
+      tags:
+      - build_tools
+      description: |
+        Get a list of build tools
+      parameters:
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in list
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: BuildTools
+            type: array
+            items:
+              type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+            
+    put:
+      tags:
+        - build_tools
+      summary: Sets the list of supported build tools
+      description: ""
+      operationId: setBuildTools
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: List of build tools
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "405":
+          description: Invalid input
+        "201":
+          description: Created
+  
+  
 definitions:
   Customer:
     type: object
