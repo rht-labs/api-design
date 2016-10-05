@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "0.2.0"
+  version: "0.3.0"
   title: Red Hat Open Innovation Labs API
   description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
   contact:
@@ -1088,7 +1088,7 @@ definitions:
       end_date:
         type: string
         format: date
-      openShift_clusters:
+      openshift_clusters:
         type: array
         items:
           $ref: "#/definitions/OpenShiftCluster"
@@ -1109,9 +1109,9 @@ definitions:
         type: object
         additionalProperties:
           type: string
-      openShift_resources:
+      openshift_resources:
         $ref: '#/definitions/OpenShiftResources'
-      openShift_host_env:
+      openshift_host_env:
         type: string
       userId:
         type: string

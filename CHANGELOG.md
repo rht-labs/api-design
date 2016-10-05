@@ -1,6 +1,11 @@
 # About
 We're using [Semantic Versioning](http://semver.org/) and following [this definition](http://keepachangelog.com/en/0.3.0/) of a change log
 
+# Unrelease
+
+## Changed
+- Fix case issue from v0.2.0
+
 # [v0.2.0] - 2016-09-06
 
 ## Added
