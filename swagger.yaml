@@ -1191,10 +1191,11 @@ definitions:
         type: string
       name:
         type: string
-      build_environment:
-        type: boolean
-      promotion_environment:
-        type: boolean
+      environment_type:
+        type: string
+        enum:
+        - build
+        - promotion
       apps:
         type: array
         items:
@@ -1233,6 +1234,9 @@ definitions:
   LabelSelector:
     type: object
     properties:
+      id:
+        type: integer
+        format: int64
       match_labels:
         type: object
         additionalProperties:
@@ -1385,6 +1389,9 @@ definitions:
   ClaimType:
     type: object
     properties:
+      id:
+        type: integer
+        format: int64
       kind:
         type: string
         enum:
