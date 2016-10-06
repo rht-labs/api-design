@@ -1146,6 +1146,9 @@ definitions:
         type: string
       reclaim_policy:
         type: string
+        enum:
+        - Retain
+        - Recycle
       labels:
         type: object
         additionalProperties:
