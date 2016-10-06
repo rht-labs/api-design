@@ -759,9 +759,9 @@ paths:
       description: ""
       operationId: addRoleMapping
       consumes:
-        - role_mapping/json
+        - application/json
       produces:
-        - role_mapping/json
+        - application/json
       parameters:
         - in: body
           name: body
@@ -832,9 +832,9 @@ paths:
       description: ""
       operationId: updateRoleMapping
       consumes:
-        - role_mapping/json
+        - application/json
       produces:
-        - role_mapping/json
+        - application/json
       parameters:
         -
           name: id
@@ -863,7 +863,7 @@ paths:
       description: ""
       operationId: deleteRoleMapping
       produces:
-        - role_mapping/json
+        - application/json
       parameters:
         - in: path
           name: id
@@ -882,9 +882,9 @@ paths:
       description: ""
       operationId: addRole
       consumes:
-        - role/json
+        - application/json
       produces:
-        - role/json
+        - application/json
       parameters:
         - in: body
           name: body
@@ -955,9 +955,9 @@ paths:
       description: ""
       operationId: updateRole
       consumes:
-        - role/json
+        - application/json
       produces:
-        - role/json
+        - application/json
       parameters:
         -
           name: id
@@ -1113,12 +1113,46 @@ definitions:
         $ref: '#/definitions/OpenShiftResources'
       openshift_host_env:
         type: string
-      userId:
-        type: string
       image_registry:
         type: string
+      persistent_volumes:
+        type: array
+        items:
+          $ref: '#/definitions/PersistentVolume'
     required:
     - id
+  PersistentVolume:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      capacity:
+        type: integer
+        format: int64
+      access_modes:
+        type: array
+        items:
+          type: string
+          enum:
+          - ReadWriteOnce
+          - ReadOnlyMany
+          - ReadWriteMany
+      nfs_path:
+        type: string
+      nfs_server:
+        type: string
+      reclaim_policy:
+        type: string
+        enum:
+        - Retain
+        - Recycle
+      labels:
+        type: object
+        additionalProperties:
+          type: string
   OpenShiftResources:
     type: object
     properties:
@@ -1169,8 +1203,40 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/RoleMapping'
+      persistent_volume_claims:
+        type: array
+        items:
+          $ref: '#/definitions/PersistentVolumeClaim'
     required:
     - name
+  PersistentVolumeClaim:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      access_modes:
+        type: array
+        items:
+          type: string
+          enum:
+          - ReadWriteOnce
+          - ReadOnlyMany
+          - ReadWriteMany
+      storage:
+        type: integer
+        format: int64
+      selector:
+        $ref: '#/definitions/LabelSelector'
+  LabelSelector:
+    type: object
+    properties:
+      match_labels:
+        type: object
+        additionalProperties:
+          type: string
   Application:
     type: object
     properties:
@@ -1213,6 +1279,104 @@ definitions:
         type: object
         additionalProperties:
           type: string
+      pvc_associations:
+        type: array
+        items:
+          $ref: '#/definitions/PVCAssociation'
+      routes:
+        type: array
+        items:
+          $ref: '#/definitions/Route'
+  Route:
+    type: object
+    discriminator: route_type
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      route_type:
+        type: string 
+        enum:
+        - edge
+        - passthrough
+        - reencrypt
+      hostname:
+        type: string
+      port:
+        type: integer
+        format: int
+      service:
+        $ref: '#/definitions/Service'
+    required:
+    - route_type
+  PassthroughRoute:
+    allOf:
+    - $ref: '#/definitions/Route'
+    - type: object
+  EdgeRoute:
+    allOf:
+    - $ref: '#/definitions/Route'
+    - type: object
+      properties:
+        ca_cert:
+          type: string
+        cert:
+          type: string
+        insecure_policy:
+          type: string
+        key:
+          type: string
+        path:
+          type: string
+  ReencryptRoute:
+    allOf:
+    - $ref: '#/definitions/Route'
+    - type: object
+      properties:
+        ca_cert:
+          type: string
+        cert:
+          type: string
+        dest_ca_cert:
+          type: string
+        insecure_policy:
+          type: string
+        key:
+          type: string
+        path:
+          type: string  
+  Service:
+    type: object
+    properties:
+      port:
+        type: integer
+        format: int
+      target_port:
+        type: integer
+        format: int
+  PVCAssociation:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      mount_path:
+        type: string
+      claim_type:
+        $ref: '#/definitions/ClaimType'
+  ClaimType:
+    type: object
+    properties:
+      kind:
+        type: string
+        enum:
+        - secret
+        - claim
+      name:
+        type: string
   RoleMapping:
     type: object
     properties:
