@@ -1191,10 +1191,11 @@ definitions:
         type: string
       name:
         type: string
-      build_environment:
-        type: boolean
-      promotion_environment:
-        type: boolean
+      environment_type:
+        type: string
+        enum:
+        - build
+        - promotion
       apps:
         type: array
         items:
@@ -1429,3 +1430,4 @@ definitions:
         type: integer
         minimum: 100
         maximum: 600
+
