@@ -1302,6 +1302,7 @@ definitions:
         - edge
         - passthrough
         - reencrypt
+        - default
       hostname:
         type: string
       port:
