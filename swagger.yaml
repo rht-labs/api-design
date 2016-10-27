@@ -1424,7 +1424,7 @@ definitions:
         items:
           $ref: '#/definitions/Role'
     required:
-    - user
+    - group
     - roles
   Group:
     type: object
