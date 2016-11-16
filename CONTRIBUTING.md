@@ -20,6 +20,14 @@ See [Using Pull Requests](https://help.github.com/articles/using-pull-requests/)
 
 # Things Contributors Should Know
 
+# The Design of the Automation API
+
+The current architectural direction for PBI is that the Automation API will be a verbose contract i.e. we'll favor completeness over convention or brevity. This decision was made because the additional detail removes guess work about the desired state when implementing an Automation Engine. However; this can make writing documents in the Automation API schema more laborious. To lower the bar of entry to our ecosystem, we're building a graphical interface using a contract that favors strong conventions and brevity. This new UI, called the labs console, will be able to generate Automation API documents from it's terse model, thus allowing the labs console to drive Automation Engines. The labs console is still to early to consume at this stage, so the below example will walk you through writing a document in the Automation API model directly.
+
+## A Note About How This API Is Evolving
+
+We didn't originally set out to build an Automation API, but rather automate the creation of projects, apps, build config, etc inside of Red Hat OpenShift. So while architecturally we aspire to a declarative Automation API, our implementation is actually derived from an attempt to strongly type a var file being used for [an Ansible role](https://github.com/rht-labs/ansible-stacks/tree/master/roles/create-openshift-resources). Since this contract is now consumed by our [Jenkins Pipeline Plugin](https://github.com/rht-labs/dynamic-pipeline-jenkins-plugin) and [Ansible Role](https://github.com/rht-labs/ansible-stacks/tree/master/roles/create-openshift-resources) implementations, we're favoring stability in the Automation API and doing experimentation with the [API in the Labs Console](https://github.com/rht-labs/labs-console-api). When we're happy with the evolution of these new concepts, we'll make breaking changes to the Automation API.
+
 ## Logical Architecture & Links to Code Repositories 
 TODO
 
