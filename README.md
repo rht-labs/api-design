@@ -12,10 +12,10 @@ Push Button Infrastructure is a capability developed in the Open Innovation Lab 
     * https://github.com/rht-labs/labs-console-api
     * https://github.com/rht-labs/infographic
 * **Automation API**
-   * A declarative contract for modelling the desired state of **Automation Targets**
+   * A declarative contract for modelling the desired state of _Automation Targets_
    * This repository is used for the Automation API
 * **Automation Engines**
-   * IT Automation and CI / CD tools used to consume the **Automation API** contract and produce the desired state in **Automation Targets**
+   * Tools used to consume the _Automation API_ contract and produce the desired state in _Automation Targets_
    * Repositories include:
      * https://github.com/rht-labs/ansible-stacks
      * https://github.com/rht-labs/dynamic-pipeline-jenkins-plugin
