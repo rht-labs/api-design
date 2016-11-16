@@ -54,13 +54,11 @@ Most Automation API documents will start like this:
 
 ## Modelling The Build Environment
 
-PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our automation to set up an OpenShift project where these S2I can take place. Given that our organization has a policy for DEV => UAT => PROD promotion process, we'll use the DEV stage to build our images. Here is how to do that:
+PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our automation to set up an OpenShift project where these S2I builds can take place. Given that our organization has a policy for DEV => UAT => PROD promotion process, we'll use the DEV stage to build our images. Here is how to do that:
 
 ```json
 {
-  "openshift_clusters": [
-    {
-      "openshift_resources": {
+...
         "projects": [
           {
             "name": "hello-world-dev",
@@ -69,9 +67,7 @@ PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our 
             "apps":[]
           }
         ]
-      }
-    }
-  ]
+...
 }
 ```
 
