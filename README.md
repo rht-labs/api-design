@@ -45,11 +45,7 @@ Most Automation API documents will start like this:
   "openshift_clusters": [
     {
       "openshift_resources": {    
-        "projects": [
-          {
-            
-          }
-        ]
+        "projects": []
       }
     }
   ]
@@ -64,12 +60,12 @@ PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our 
 {
   "openshift_clusters": [
     {
-      "openshift_resources": {    
+      "openshift_resources": {
         "projects": [
           {
-						"name": "hello-world-dev",
-						"display_name": "Hello World - DEV",
-						"environment_type": "build",
+            "name": "hello-world-dev",
+            "display_name": "Hello World - DEV",
+            "environment_type": "build",
             "apps":[]
           }
         ]
