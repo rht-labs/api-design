@@ -34,6 +34,10 @@ Let's suppose for a moment that you're working on a team that is building a Java
 
 ### Validating Your Document Against the OpenAPI Spec
 
+
+## Generating An Automation API Document Via The Labs Console: An Example
+TODO when console is ready
+
 # Code Generation
 The code-gen folder contains scripts and helpers to generate the code we need from these APIs. For now, the scripts need to be run in the code-gen directory else they will fail.
 
