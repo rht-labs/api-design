@@ -1,4 +1,4 @@
-# What's In This Repository?
+# What Is In This Repository?
 This repository is home to the Automation API specification for Open Innovation Labs Push Button Infrastructure. Originally, it started as the home of all our Swagger / OpenAPI Specifications, System Designs and Documentation, but over time we've decided that we should have smaller, more discrete repos. The repository needs to be migrated to a new one to make the name more declarative.
 
 # What is Push Button Infrastructure (PBI)?
@@ -20,31 +20,12 @@ Here's how those contexts look graphically:
 ![alt text](images/PBI_Conceptual.png "PBI Conceptual Architecture")
 
 
-# Why build the Automation API?
+# Using the Automation API: An Example
 
-The IT Automation and CI / CD tooling ecosystems are exploding. There is no one tool to rule them all
+Let's suppose for a moment that you're working on a team that is building a Java web application that you want to deploy to JBoss EAP on OpenShift. In your organization, it's policy for teams to use a promotion process that promotes new releases of the application from a development environment (DEV), to a testing environment (UAT). to production (PROD). 
 
-The current swagger.yaml file defines the automation API used throughout Open Innovation Labs. Over time it is likely that we'll model multiple APIs in this repository, and move Automation to a sub directory.
-
-# An Example
-
-## Code Generation
+# Code Generation
 The code-gen folder contains scripts and helpers to generate the code we need from these APIs. For now, the scripts need to be run in the code-gen directory else they will fail.
 
-  * Repositories include:
-    * https://github.com/rht-labs/labs-console
-    * https://github.com/rht-labs/labs-console-api
-    * https://github.com/rht-labs/infographic
-
-
-       * Repositories include:
-     * https://github.com/rht-labs/ansible-stacks
-     * https://github.com/rht-labs/dynamic-pipeline-jenkins-plugin
-     * https://github.com/rht-labs/openshift-jenkins-s2i-config
-     * https://github.com/rht-labs/rhc-ose
-
-       * We have the following types of automation targets:
-     * Hosting Infrastructure (e.g. OpenStack, AWS)
-     * Container Platform (e.g. OpenShift)
-     * DevOps and Collaboration tools (e.g. Jira, Slack, GitHub, Jenkins)
-     * Application Development (e.g. Maven builds, OpenShift s2i)
+# Contributing
+This documentation is focused on end users. If you're interested in contributing or simply learning more about why we've made certain design decisions, see the [contributor's guide](CONTRIBUTING.md).
