@@ -19,23 +19,28 @@ Push Button Infrastructure is a capability developed in the Open Innovation Lab 
 Here's how those contexts look graphically:
 ![alt text](images/PBI_Conceptual.png "PBI Conceptual Architecture")
 
-# Contributing / Architectural Decisions
-The following documentation is focused on end users. If you're interested in contributing or simply learning more about why we've made certain design decisions, see the [contributor's guide](CONTRIBUTING.md).
+# To Learn More or Start Contributing
+See the [contributor's guide](CONTRIBUTING.md). The following documentation is focused on end users. 
 
-## Exploring the Schema
-
-If you would like to read [the schema](swagger.yml) for the engagement before following the example, now is the time to do it. You can use tools like [swagger editor](http://editor.swagger.io/) to visualize the schema as well. 
-
-## Writing An Automation API Document By Hand: An Example
+# Getting Started With An Example
 
 Let's suppose for a moment that you're working on a team that is building a Java web application that you want to deploy to JBoss EAP on OpenShift. In your organization it's standard policy for teams to use a promotion process that deploys new releases of the application from a development environment (DEV), to a testing environment (UAT), and finally to production (PROD). 
 
-### Getting Started
+In it's current form, the Automation API is a very thin abstraction over the below concepts. If you are new to these concepts, it may help to read through the below links before continuing.
+
+* [OpenShift Projects](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/projects_and_users.html#architecture-core-concepts-projects-and-users)
+* [OpenShift Source to Image (S2I)](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html).
+* [Jenkins Pipeline](https://go.cloudbees.com/docs/cloudbees-documentation/cookbook/book.html#_continuous_delivery_with_jenkins_pipeline)
+
+If you would like to read [the schema](swagger.yml) for the engagement before following the example, now is the time to do it. You can use tools like [swagger editor](http://editor.swagger.io/) to visualize the schema as well. 
+
+## The Engagement Object Hierarchy
 
 The Automation API is currently composed of a single object hierarchy, the engagement. We're going to focus on the parts of the engagement that define OpenShift resources, like projects and applications inside an OpenShift cluster. 
 
 Most Automation API documents will start like this:
-```
+
+```json
 {
   "openshift_clusters": [
     {
@@ -47,14 +52,43 @@ Most Automation API documents will start like this:
         ]
       }
     }
+  ]
 }
 ```
 
-### Modelling The Build Environment
+## Modelling The Build Environment
 
-Every application needs to built 
+PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our automation to set up an OpenShift project where these S2I can take place. Given that our organization has a policy for DEV => UAT => PROD promotion process, we'll use the DEV stage to build our images. Here is how to do that:
 
-If you're new to OpenShift, then you should take some time now to read up on two key concepts: [OpenShift Projects](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/projects_and_users.html#architecture-core-concepts-projects-and-users) and [OpenShift Source to Image](https://docs.openshift.com/container-platform/3.3/architecture/core_concepts/builds_and_image_streams.html).
+```json
+{
+  "openshift_clusters": [
+    {
+      "openshift_resources": {    
+        "projects": [
+          {
+						"name": "hello-world-dev",
+						"display_name": "Hello World - DEV",
+						"environment_type": "build",
+            "apps":[]
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Modelling The Application
+
+We're build a Java Web Application which we will deploy to a JBoss EAP Base Image. In our example, we'll use the code base provided by the JBoss EAP "Hello World" quick start.
+
+```
+{
+
+}
+
+```
 
 
 
