@@ -36,7 +36,7 @@ If you would like to read [the schema](swagger.yml) for the engagement before fo
 
 ## The Engagement Object Hierarchy
 
-The Automation API is currently composed of a single object hierarchy, the engagement. We're going to focus on the parts of the engagement that define OpenShift resources, like projects and applications inside an OpenShift cluster. 
+The Automation API is currently composed of a single object hierarchy, the engagement. We're going to focus on the parts of the engagement that define OpenShift resources, like projects and applications inside an OpenShift cluster. Through out each section of the example, we'll show only the new JSON needed to add the functionality described. We'll put the whole document together at the end. **Feedback requested** is this the right way to do it? Or should we show complete examples? I'm worried that will be to much data on the screen.
 
 Most Automation API documents will start like this:
 
@@ -58,36 +58,93 @@ PBI leverages OpenShift S2I for all container builds. Thus, we need to tell our 
 
 ```json
 {
-...
-        "projects": [
-          {
-            "name": "hello-world-dev",
-            "display_name": "Hello World - DEV",
-            "environment_type": "build",
-            "apps":[]
-          }
-        ]
-...
+  "projects": [
+    {
+      "name": "hello-world-dev",
+      "display_name": "Hello World - DEV",
+      "environment_type": "build",
+      "apps":[]
+    }
+  ]
 }
 ```
 
 ## Modelling The Application
 
-We're build a Java Web Application which we will deploy to a JBoss EAP Base Image. In our example, we'll use the code base provided by the JBoss EAP "Hello World" quick start.
+PBI leverages Jenkins to do application builds. While we can use OpenShift S2I to do application builds, Jenkins provides an ecosystem of 3rd party plugins for things like static analysis and artifact archiving that are very valuable. Therefore, we need to give Jenkins the information it needs to properly build our Java Application with maven. OpenShift will use the resulting WAR file from the Jenkins application build to create a container image with S2I, so we need to tell OpenShift to use a JBoss EAP base container image.
 
-```
+```json
 {
-
+  "apps":[
+    {
+    "name": "hello-world",
+        "scm_url": "https://github.com/jboss-developer/jboss-eap-quickstarts.git",
+        "scm_ref": "master",
+        "build_tool": "mvn-3",
+        "build_application_commands": [
+          "mvn clean install"
+        ],
+        "context_dir": "helloworld",
+        "base_image": "openshift/jboss-eap64-openshift"
+    }
+  ]
 }
+```
 
+## Modelling The Promotion Environments
+
+In the previous steps we've declared our DEV stage with the details of how to build our application and it's corresponding container image. We now need a way to promote this application to our UAT and PROD stages. PBI leverages Jenkins pipeline and OpenShift ImageStreams to provide this functionality. Therefore, we simply need to tell OpenShift which projects to create for our UAT and PROD stages, as well as the apps we expect in those project, and PBI will be smart enough to create pipelines in Jenkins to promote the application through those stages. Here is what that looks like:
+
+```json
+{
+  "projects":[
+    {
+      "name": "hello-world-uat",
+      "display_name": "Hello World - UAT",
+      "environment_type": "promotion",
+      "apps": [
+        {
+          "name": "hello-world",
+          "base_image": "hello-world"
+        }
+      ] 
+    },
+    {
+      "name": "hello-world-prod",
+      "display_name": "Hello World - PROD",
+      "environment_type": "promotion",
+      "apps": [
+        {
+          "name": "hello-world",
+          "base_image": "hello-world"
+        }
+      ] 
+    }
+  ]
+}
 ```
 
 
+## Modelling Users & Groups
+ 
+TODO
 
-### Modelling The Promotion Environments
+## The End Result
+
+If we put it all together, here is the result. 
+
+## Next Steps
+
+### Adding More Apps
+
+The Automation API is designed to support multiple apps in a project. Remember that projects use kubernetes to control resource quotas, so you'll want to work with your operations team to figure out the right balance of projects and apps.
+
+### More complicated scenarios
+
+The Automation API supports a lot more than what was covered here. Review the schema to get an idea what those things are, and [open an issue](https://github.com/rht-labs/api-design/issues/new) if you'd like more documentation.
 
 ### Validating Your Document Against the OpenAPI Spec
-
+See https://github.com/rht-labs/api-design/issues/53
 
 ## Generating An Automation API Document Via The Labs Console: An Example
 TODO when console is ready
