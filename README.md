@@ -20,9 +20,19 @@ Here's how those contexts look graphically:
 ![alt text](images/PBI_Conceptual.png "PBI Conceptual Architecture")
 
 
-# Using the Automation API: An Example
+# Using the Automation API
 
-Let's suppose for a moment that you're working on a team that is building a Java web application that you want to deploy to JBoss EAP on OpenShift. In your organization, it's policy for teams to use a promotion process that promotes new releases of the application from a development environment (DEV), to a testing environment (UAT). to production (PROD). 
+The current architectural direction for PBI is that the Automation API will be a verbose contract i.e. we'll favor completeness over convention or brevity. This decision was made because the additional detail removes guess work about the desired state when implementing an Automation Engine. However; this can make writing documents in the Automation API schema more laborious. To lower the bar of entry to our ecosystem, we're building a graphical interface using a contract that favors strong conventions and brevity. This new UI, called the labs console, will be able to generate Automation API documents from it's terse model, thus allowing the labs console to drive Automation Engines. The labs console is still to early to consume at this stage, so the below example will walk you through writing a document in the Automation API model directly.
+
+## Writing An Automation API Document By Hand: An Example
+
+Let's suppose for a moment that you're working on a team that is building a Java web application that you want to deploy to JBoss EAP on OpenShift. In your organization it's standard policy for teams to use a promotion process that deploys new releases of the application from a development environment (DEV), to a testing environment (UAT), and finally to production (PROD). 
+
+### Modelling The Build Environment
+
+### Modelling The Promotion Environments
+
+### Validating Your Document Against the OpenAPI Spec
 
 # Code Generation
 The code-gen folder contains scripts and helpers to generate the code we need from these APIs. For now, the scripts need to be run in the code-gen directory else they will fail.
