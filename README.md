@@ -7,27 +7,14 @@ Push Button Infrastructure is a capability developed in the Open Innovation Lab 
 
 * **User Interfaces**
   * Graphical frontends to the assets in the PBI ecosystem, built using a [backend for frontend approach](https://www.thoughtworks.com/insights/blog/bff-soundcloud)
-  * Repositories include:
-    * https://github.com/rht-labs/labs-console
-    * https://github.com/rht-labs/labs-console-api
-    * https://github.com/rht-labs/infographic
 * **Automation API**
    * A declarative contract for modelling the desired state of Automation Targets
    * This repository is used for the Automation API
 * **Automation Engines**
    * Tools used to consume the Automation API contract and produce the desired state in Automation Targets
-   * Repositories include:
-     * https://github.com/rht-labs/ansible-stacks
-     * https://github.com/rht-labs/dynamic-pipeline-jenkins-plugin
-     * https://github.com/rht-labs/openshift-jenkins-s2i-config
-     * https://github.com/rht-labs/rhc-ose
 * **Automation Targets**
   * The technologies that we ultimately want to create/configure/provision/etc. with PBI
-  * We have the following types of automation targets:
-     * Hosting Infrastructure (e.g. OpenStack, AWS)
-     * Container Platform (e.g. OpenShift)
-     * DevOps and Collaboration tools (e.g. Jira, Slack, GitHub, Jenkins)
-     * Application Development (e.g. Maven builds, OpenShift s2i)
+
 
 Here's how those contexts look graphically:
 ![alt text](images/PBI_Conceptual.png "PBI Conceptual Architecture")
@@ -43,3 +30,21 @@ The current swagger.yaml file defines the automation API used throughout Open In
 
 ## Code Generation
 The code-gen folder contains scripts and helpers to generate the code we need from these APIs. For now, the scripts need to be run in the code-gen directory else they will fail.
+
+  * Repositories include:
+    * https://github.com/rht-labs/labs-console
+    * https://github.com/rht-labs/labs-console-api
+    * https://github.com/rht-labs/infographic
+
+
+       * Repositories include:
+     * https://github.com/rht-labs/ansible-stacks
+     * https://github.com/rht-labs/dynamic-pipeline-jenkins-plugin
+     * https://github.com/rht-labs/openshift-jenkins-s2i-config
+     * https://github.com/rht-labs/rhc-ose
+
+       * We have the following types of automation targets:
+     * Hosting Infrastructure (e.g. OpenStack, AWS)
+     * Container Platform (e.g. OpenShift)
+     * DevOps and Collaboration tools (e.g. Jira, Slack, GitHub, Jenkins)
+     * Application Development (e.g. Maven builds, OpenShift s2i)
