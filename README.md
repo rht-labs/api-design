@@ -5,13 +5,13 @@ This repository is home to the Automation API specification for Open Innovation 
 
 Push Button Infrastructure is a capability developed in the Open Innovation Lab to enable our participant to focus on feature development on day 1, not the details of the platform they are running. To help understand PBI at a conceptual level, well explore it using [bounded contexts](http://martinfowler.com/bliki/BoundedContext.html), a key modelling concept introduced in [domain driven design](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215). In order to keep things conceptual, we're not going to introduce the tools or technologies we use for PBI implementation. There are 4 bounded contexts in the PBI conceptual architecture:
 
-* *User Interfaces*
+* **User Interfaces**
   * Graphical frontends to the assets in the PBI ecosystem 
   * Built using a [backend for frontend approach](https://www.thoughtworks.com/insights/blog/bff-soundcloud)
-* * Repositories include:
-* * * https://github.com/rht-labs/labs-console
-* * * https://github.com/rht-labs/labs-console-api
-* * * https://github.com/rht-labs/infographic
+  * Repositories include:
+    * https://github.com/rht-labs/labs-console
+    * https://github.com/rht-labs/labs-console-api
+    * https://github.com/rht-labs/infographic
 * *Automation API*
 * * A contract for declaring the desired state of *Automation Targets*
 * * This repository is used for the Automation API
