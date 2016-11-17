@@ -133,6 +133,59 @@ TODO
 
 If we put it all together, here is the result. 
 
+```json
+{
+  "openshift_clusters": [
+    {
+      "openshift_resources": {    
+        "projects": [
+          {
+            "name": "hello-world-dev",
+            "display_name": "Hello World - DEV",
+            "environment_type": "build",
+            "apps":[
+              {
+                "name": "hello-world",
+                "scm_url": "https://github.com/jboss-developer/jboss-eap-quickstarts.git",
+                "scm_ref": "master",
+                "build_tool": "mvn-3",
+                "build_application_commands": [
+                  "mvn clean install"
+                ],
+                "context_dir": "helloworld",
+                "base_image": "openshift/jboss-eap64-openshift"
+              }
+            ]
+          },
+          {
+            "name": "hello-world-uat",
+            "display_name": "Hello World - UAT",
+            "environment_type": "promotion",
+            "apps": [
+              {
+                "name": "hello-world",
+                "base_image": "hello-world"
+              }
+            ] 
+          },
+          {
+            "name": "hello-world-prod",
+            "display_name": "Hello World - PROD",
+            "environment_type": "promotion",
+            "apps": [
+              {
+                "name": "hello-world",
+                "base_image": "hello-world"
+              }
+            ] 
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
 ## Next Steps
 
 ### Adding More Apps
