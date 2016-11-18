@@ -1092,10 +1092,14 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/OpenShiftCluster"
-      team:
+      users:
         type: array
         items:
           $ref: '#/definitions/User'
+      groups:
+        type: array
+        items:
+          $ref: '#/definitions/Group'
     required:
     - id
     - name
@@ -1434,6 +1438,10 @@ definitions:
         format: int64
       name:
         type: string
+      members:
+        type: array
+        items:
+          $ref: '#/definitions/User'
     required:
     - name
   RoleMapping:
