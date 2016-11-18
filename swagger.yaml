@@ -1059,21 +1059,7 @@ paths:
   
   
 definitions:
-  Customer:
-    type: object
-    properties:
-      id:
-        type: integer
-        format: int64
-      name:
-        type: string
-      engagements:
-        type: array
-        items:
-          $ref: '#/definitions/Engagement'
-    required:
-    - id
-    - name
+
   Engagement:
     type: object
     properties:
@@ -1100,9 +1086,28 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Group'
+      pipeline_server_url:
+        type: string
     required:
     - id
     - name
+
+  Customer:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      engagements:
+        type: array
+        items:
+          $ref: '#/definitions/Engagement'
+    required:
+    - id
+    - name
+
   OpenShiftCluster:
     type: object
     properties:
