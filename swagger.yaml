@@ -1096,7 +1096,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/User'
-      groups:
+      user_groups:
         type: array
         items:
           $ref: '#/definitions/Group'
