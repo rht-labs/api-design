@@ -1182,6 +1182,9 @@ definitions:
         type: string
       user_name:
         type: string
+      expiration_date:
+        type: string
+        format: date-time
     required:
     - email
     - user_name
