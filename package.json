@@ -1,0 +1,27 @@
+{
+  "name": "api-design",
+  "version": "0.3.0-alpha",
+  "description": "OpenAPI specification for the Open Innovation Labs Automation API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rht-labs/api-design.git"
+  },
+  "author": "rhc-open-innovation-labs@redhat.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rht-labs/api-design/issues"
+  },
+  "homepage": "https://github.com/rht-labs/api-design#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.11.1",
+    "js-beautify": "^1.6.4",
+    "jshint": "^2.9.4",
+    "mocha": "^3.2.0",
+    "swagger-parser": "^3.4.1"
+  }
+}

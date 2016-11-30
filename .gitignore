@@ -1,2 +1,3 @@
 code-gen/target
 code-gen/swagger-codegen-cli.jar
+node_modules
