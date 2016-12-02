@@ -1,7 +1,7 @@
 {
     "apiPackage" : "com.rhc.automation.api",
     "artifactId" : "automation-api",
-    "artifactVersion" : "0.3.0",
+    "artifactVersion" : "0.3.0-SNAPSHOT",
     "invokerPackage" : "com.rhc.automation",
     "basePackage" :  "com.rhc.automation",
     "configPackage" : "com.rhc.automation.config",

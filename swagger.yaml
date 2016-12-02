@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "0.3.0"
+  version: "0.3.0-alpha"
   title: Red Hat Open Innovation Labs API
   description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
   contact:

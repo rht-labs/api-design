@@ -1,7 +1,7 @@
 {
     "apiPackage" : "com.rhc.automation.api",
     "artifactId" : "automation-api-client",
-    "artifactVersion" : "0.3.0",
+    "artifactVersion" : "0.3.0-SNAPSHOT",
     "groupId" : "com.rhc",
     "modelPackage" : "com.rhc.automation.model"
 }
