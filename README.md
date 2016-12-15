@@ -163,7 +163,7 @@ If we put it all together, here is the result.
 ```
 
 ## Examples
-The `examples` directory contains some example files that can be used with the ansible-stacks implementation, and in particular the tests, found [here](https://github.com/rht-labs/ansible-stacks/tree/master/roles/create-openshift-resources/tests).
+The `examples` directory contains some example files that can be used with the ansible-stacks implementation, and in particular the tests, found [here](https://github.com/rht-labs/ansible-stacks/tree/master/roles/create-openshift-resources/tests/vars).
 
 
 ## Next Steps
