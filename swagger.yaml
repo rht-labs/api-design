@@ -13,6 +13,47 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
 paths:
+  /engagement-summaries:
+    get:
+      tags:
+        - engagement-summary
+      produces:
+        - application/json
+      parameters:
+        -
+          name: nameIncludes
+          in: query
+          description: selects results that contain the query string, case insensitive, in `EngagementSummary.name`
+          required: false
+          type: string
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in result set from beginning
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: collection of `Engagement` objects
+          schema:
+            title: EngagementSummaries
+            type: array
+            items:
+              $ref: "#/definitions/EngagementSummary"
+        400:
+          description: 'bad request: invalid syntax'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
   /engagements:
     post:
       tags:
@@ -44,7 +85,7 @@ paths:
         -
           name: nameIncludes
           in: query
-          description: selects results that contain the query string, case insensitive, in `Engagement.name` 
+          description: selects results that contain the query string, case insensitive, in `Engagement.name`
           required: false
           type: string
         -
@@ -70,7 +111,7 @@ paths:
             items:
               $ref: "#/definitions/Engagement"
         400:
-          description: 'bad request: invalid syntax'      
+          description: 'bad request: invalid syntax'
         default:
           description: unexpected error
           schema:
@@ -153,11 +194,26 @@ paths:
           description: 'unexpected error'
           schema:
             $ref: '#/definitions/ErrorModel'
-  
-  
+
 definitions:
-  Engagement:
+  EngagementSummary:
     type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      start_date:
+        type: string
+        format: date
+      end_date:
+        type: string
+        format: date
+    required:
+    - id
+    - name
+  Engagement:
     properties:
       id:
         type: integer
@@ -394,7 +450,7 @@ definitions:
       name:
         type: string
       route_type:
-        type: string 
+        type: string
         enum:
         - edge
         - passthrough
@@ -444,7 +500,7 @@ definitions:
         key:
           type: string
         path:
-          type: string  
+          type: string
   Service:
     type: object
     properties:
@@ -566,4 +622,3 @@ definitions:
         type: integer
         minimum: 100
         maximum: 600
-
