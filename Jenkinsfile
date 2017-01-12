@@ -14,10 +14,10 @@ node {
           sh "'./generate-java-client.sh'"
           sh "'./generate-spring-server.sh'"
           dir ( 'target/java-client' ){
-              sh "'${mvnHome}/bin/mvn' clean deploy -DaltDeploymentRepository=nexus::default::http://nexus.artifact-repository-delivery.svc.cluster.local:8081/repository/labs-releases"
+              sh "'${mvnHome}/bin/mvn' clean deploy -DaltDeploymentRepository=nexus::default::http://nexus.artifact-repository-delivery.svc.cluster.local:8081/repository/labs-snapshots"
           }
           dir ( 'target/spring-server' ){
-              sh "'${mvnHome}/bin/mvn' clean deploy -DaltDeploymentRepository=nexus::default::http://nexus.artifact-repository-delivery.svc.cluster.local:8081/repository/labs-releases"
+              sh "'${mvnHome}/bin/mvn' clean deploy -DaltDeploymentRepository=nexus::default::http://nexus.artifact-repository-delivery.svc.cluster.local:8081/repository/labs-snapshots"
           }
       }
    }
