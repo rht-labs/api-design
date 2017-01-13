@@ -13,6 +13,159 @@ info:
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 
 paths:
+  /engagements:
+    post:
+      tags:
+        - engagement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: '`Engagement` object to save'
+          required: true
+          schema:
+            $ref: "#/definitions/Engagement"
+      responses:
+        201:
+          description: 'Created'
+          headers:
+            Location:
+              type: string
+              description: 'Relative path to created Engagement'
+        400:
+          description: 'Invalid `Engagement`'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        500:
+          description: 'Unexpected Server Error'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      tags:
+      - engagement
+      parameters:
+        -
+          name: nameIncludes
+          in: query
+          description: selects results that contain the query string, case insensitive, in `Engagement.name`
+          required: false
+          type: string
+        -
+          name: size
+          in: query
+          description: number of results to return
+          required: false
+          type: integer
+          format: int32
+        -
+          name: offset
+          in: query
+          description: offset in result set from beginning
+          required: false
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Collection of `Engagement` objects
+          schema:
+            title: Engagements
+            type: array
+            items:
+              $ref: "#/definitions/Engagement"
+        500:
+          description: Unexpected Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /engagements/{id}:
+    get:
+      tags:
+      - engagement
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: '`Engagement` of the given `id` returned'
+          schema:
+            $ref: "#/definitions/Engagement"
+        404:
+          description: '`Engagement` of the given `id` not found'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        500:
+          description: 'Unexpected Server Error'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    put:
+      tags:
+        - engagement
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/Engagement"
+      responses:
+        201:
+          description: 'Created New `Engagement`'
+          headers:
+            Location:
+              type: string
+              description: 'Relative path to created Engagement'
+        204:
+          description: '`Engagement` of Given `id` Updated'
+          schema:
+            $ref: "#/definitions/Engagement"
+        400:
+          description: 'Invalid `Engagement`'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        500:
+          description: 'Unexpected Server Error'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    delete:
+      tags:
+        - engagement
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+          format: int64
+      responses:
+        204:
+          description: '`Engagement` of the given `id` deleted'
+          schema:
+            $ref: "#/definitions/Engagement"
+
+        404:
+          description: '`Engagement` of the given `id` not found'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        500:
+          description: 'Unexpected Server Error'
+          schema:
+            $ref: '#/definitions/ErrorModel'
   /engagement-summaries:
     get:
       tags:
@@ -42,159 +195,16 @@ paths:
           format: int64
       responses:
         200:
-          description: collection of `Engagement` objects
+          description: Collection of `EngagementSummary` objects
           schema:
             title: EngagementSummaries
             type: array
             items:
               $ref: "#/definitions/EngagementSummary"
-        400:
-          description: 'bad request: invalid syntax'
-        default:
-          description: unexpected error
+        500:
+          description: Unexpected Server Error
           schema:
             $ref: '#/definitions/ErrorModel'
-  /engagements:
-    post:
-      tags:
-        - engagement
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: '`Engagement` object to save'
-          required: true
-          schema:
-            $ref: "#/definitions/Engagement"
-      responses:
-        201:
-          description: 'created'
-        400:
-          description: 'bad request: invalid syntax'
-        default:
-          description: 'unexpected error'
-          schema:
-            $ref: '#/definitions/ErrorModel'
-    get:
-      tags:
-      - engagement
-      parameters:
-        -
-          name: nameIncludes
-          in: query
-          description: selects results that contain the query string, case insensitive, in `Engagement.name`
-          required: false
-          type: string
-        -
-          name: size
-          in: query
-          description: number of results to return
-          required: false
-          type: integer
-          format: int32
-        -
-          name: offset
-          in: query
-          description: offset in result set from beginning
-          required: false
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: collection of `Engagement` objects
-          schema:
-            title: Engagements
-            type: array
-            items:
-              $ref: "#/definitions/Engagement"
-        400:
-          description: 'bad request: invalid syntax'
-        default:
-          description: unexpected error
-          schema:
-            $ref: '#/definitions/ErrorModel'
-  /engagements/{id}:
-    get:
-      tags:
-      - engagement
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: '`Engagement` of the given `id` returned'
-          schema:
-            $ref: "#/definitions/Engagement"
-        400:
-          description: 'bad request: invalid ID'
-        404:
-          description: '`Engagement` of the given `id` not found'
-        default:
-          description: 'unexpected error'
-          schema:
-            $ref: '#/definitions/ErrorModel'
-    put:
-      tags:
-        - engagement
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        -
-          name: id
-          in: path
-          required: true
-          type: integer
-          format: int64
-        - in: body
-          name: body
-          required: true
-          schema:
-            $ref: "#/definitions/Engagement"
-      responses:
-        200:
-          description: '`Engagement` saved with the given `id`'
-          schema:
-            $ref: "#/definitions/Engagement"
-        400:
-          description: 'bad request: invalid ID'
-        default:
-          description: 'unexpected error'
-          schema:
-            $ref: '#/definitions/ErrorModel'
-    delete:
-      tags:
-        - engagement
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-          format: int64
-      responses:
-        200:
-          description: '`Engagement` of the given `id` deleted'
-          schema:
-            $ref: "#/definitions/Engagement"
-        400:
-          description: 'bad request: invalid ID'
-        404:
-          description: '`Engagement` of the given `id` not found'
-        default:
-          description: 'unexpected error'
-          schema:
-            $ref: '#/definitions/ErrorModel'
-
 definitions:
   EngagementSummary:
     type: object
