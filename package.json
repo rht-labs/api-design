@@ -1,6 +1,6 @@
 {
   "name": "api-design",
-  "version": "0.3.0-alpha",
+  "version": "0.4.0-alpha",
   "description": "OpenAPI specification for the Open Innovation Labs Automation API",
   "main": "index.js",
   "scripts": {
