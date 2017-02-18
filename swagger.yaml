@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "0.4.0-alpha"
+  version: "0.6.0-alpha"
   title: Red Hat Open Innovation Labs API
   description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
   contact:
@@ -157,7 +157,53 @@ paths:
           description: '`Engagement` of the given `id` deleted'
           schema:
             $ref: "#/definitions/Engagement"
+        404:
+          description: '`Engagement` of the given `id` not found'
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        500:
+          description: 'Unexpected Server Error'
+          schema:
+            $ref: '#/definitions/ErrorModel'
 
+  /engagements/{id}/jenkinsfile:
+    get:
+      tags:
+        - engagement
+        - jenkinsfile
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          type: integer
+          format: int64
+          description: "Identifies which engagement to use"
+        -
+          name: applicationName
+          in: query
+          required: true
+          type: string
+          description: "`Application` in the `Engagement` to produce the Jenkinsfile for"
+        -
+          name: declarative
+          in: query
+          type: boolean
+          default: false
+          description: "Whether to use [declarative syntax](https://jenkins.io/blog/2017/01/12/declarative-pipeline-beta-2/). Defaults to `false`"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            title: Jenkinsfile
+            type: string
+        400:
+          description: 'Bad request'
+          schema:
+            $ref: '#/definitions/ErrorModel'
         404:
           description: '`Engagement` of the given `id` not found'
           schema:
