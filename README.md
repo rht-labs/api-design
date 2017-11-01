@@ -1,3 +1,7 @@
+# This project is deprecated and no longer under active development.
+
+It has been replaced by https://github.com/redhat-cop/casl-ansible/tree/master/roles/openshift-applier and https://github.com/rht-labs/labs-ci-cd
+
 # What Is In This Repository? 
 This repository is home to the Automation API specification for Open Innovation Labs Push Button Infrastructure. Originally, it started as the home of all our Swagger / OpenAPI Specifications, System Designs and Documentation, but over time we've decided that we should have smaller, more discrete repos. The repository needs to be migrated to a new one to make the name more declarative.
 
